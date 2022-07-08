@@ -67,6 +67,8 @@ function generateLayout(canvas: fabric.Canvas) {
             return addShape()
         }
     }
+
+    console.log("Adding shape", newShape)
     canvas.add(newShape);
   }
 
@@ -78,7 +80,6 @@ export function Layout() {
   React.useEffect(() => {
     const options = {backgroundColor: '#fff'};
     const canvas = new fabric.Canvas(canvasEl.current, options);
-    // make the fabric.Canvas instance available to your app
     generateLayout(canvas);
     return () => {
       canvas.dispose();
@@ -89,7 +90,6 @@ export function Layout() {
     <canvas
       style={{
         border: "1px solid black",
-        backgroundColor: "white",
       }}
       ref={canvasEl}
     />
