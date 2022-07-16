@@ -3,16 +3,6 @@ import { fabric } from "fabric";
 import { sample, range } from "lodash";
 import { randomInt, randomIntFromInterval } from "./utils";
 
-const lockParam = {
-  hasControls: true,
-  lockMovementX: true,
-  lockMovementY: true,
-  lockScalingX: true,
-  lockScalingY: true,
-  lockUniScaling: true,
-  lockRotation: true
-}
-
 function generateLayout(canvas: fabric.StaticCanvas) {
   const isVertical = Math.round(Math.random()) === 1;
   const height = isVertical ? 800 : (800 * 1) / 1.2941;
