@@ -3,7 +3,17 @@ import { fabric } from "fabric";
 import { sample, range } from "lodash";
 import { randomInt, randomIntFromInterval } from "./utils";
 
-function generateLayout(canvas: fabric.Canvas) {
+const lockParam = {
+  hasControls: true,
+  lockMovementX: true,
+  lockMovementY: true,
+  lockScalingX: true,
+  lockScalingY: true,
+  lockUniScaling: true,
+  lockRotation: true
+}
+
+function generateLayout(canvas: fabric.StaticCanvas) {
   const isVertical = Math.round(Math.random()) === 1;
   const height = isVertical ? 800 : (800 * 1) / 1.2941;
   const width = isVertical ? (800 * 1) / 1.2941 : 800;
@@ -28,7 +38,7 @@ function generateLayout(canvas: fabric.Canvas) {
           radius: randomIntFromInterval(10, 500),
           stroke: "black",
           strokeWidth: 2,
-          fill: "white",
+          fill: "white"
         });
       case "line":
         return new fabric.Line(
@@ -41,6 +51,7 @@ function generateLayout(canvas: fabric.Canvas) {
           {
             stroke: "black",
             strokeWidth: 2,
+            hasControls: false
           }
         );
       case "triangle":
@@ -51,7 +62,7 @@ function generateLayout(canvas: fabric.Canvas) {
           width: randomIntFromInterval(10, 100),
           stroke: "black",
           strokeWidth: 2,
-          fill: "white",
+          fill: "white"
         });
       case "rect":
         return new fabric.Rect({
@@ -61,7 +72,7 @@ function generateLayout(canvas: fabric.Canvas) {
           width: randomIntFromInterval(10, 400),
           stroke: "black",
           strokeWidth: 2,
-          fill: "white",
+          fill: "white"
         });
     }
   }
@@ -91,7 +102,7 @@ export function Layout() {
   const canvasEl = React.useRef(null);
   React.useEffect(() => {
     const options = { backgroundColor: "#fff" };
-    const canvas = new fabric.Canvas(canvasEl.current, options);
+    const canvas = new fabric.StaticCanvas(canvasEl.current, options);
     generateLayout(canvas);
     return () => {
       canvas.dispose();
